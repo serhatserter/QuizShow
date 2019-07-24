@@ -19,6 +19,7 @@ const state = {
 const getters = {
 
 
+
 };
 
 const mutations = {
@@ -43,8 +44,8 @@ const mutations = {
 };
 
 const actions = {
-  fetchQuestionList({ commit }) {
-    Vue.axios
+  async fetchQuestionList({ commit }) {
+    await Vue.axios
       .get("https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple")
       .then(response => {
         commit("SET_QUESTION_LIST", response.data.results);
@@ -60,8 +61,8 @@ const actions = {
     commit("SET_CORRECT_COUNT", correctcount);
   },
 
-  selectedAnswerUpdate({ commit }, selectedanswer) {
-    commit("SET_SELECTED_ANSWER", selectedanswer);
+  selectedAnswerUpdate({ commit, state }, selectedanswer) {
+    commit("SET_SELECTED_ANSWER", (state.questionList[state.questionIndex].correct_answer === selectedanswer));
   },
 
   playerNameUpdate({ commit }, playername) {

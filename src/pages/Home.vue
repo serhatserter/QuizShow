@@ -1,5 +1,5 @@
 <template>
-  <div id="app">  
+  <div v-if="pageLoadStatus">  
       <h1>Good Luck {{playername}} !</h1>    
       <question-view></question-view>
     <router-view />
@@ -16,7 +16,9 @@ export default {
 
 
   data() {
-    return {};
+    return {
+      pageLoadStatus: false
+    };
   },
 
   computed: {
@@ -27,9 +29,9 @@ export default {
     ...mapActions(["fetchQuestionList"])
   },
 
-  created() {
-    
-    this.fetchQuestionList();
+  async created() {
+    await this.fetchQuestionList();
+    this.pageLoadStatus = true;
   }
 };
 </script>
