@@ -1,10 +1,10 @@
 <template>
   <div>
-    <input v-model="usernameInput" @keyup.enter="playerNameUpdate(usernameInput)"/>
-    <b-button  @click="playerNameUpdate(usernameInput)">Okay</b-button>
+    <input name="inputname" v-model="usernameInput" v-validate="'min:5'" @keyup.enter="clickButton()"/>
+    <span>{{ errors.first('inputname') }}</span>
     <h1>Name: {{playername}}</h1>
     <br>
-    <b-button :to="`/Play`">Play</b-button>
+    <b-button @click="clickButton()">Play</b-button>
     
     
   </div>
@@ -39,7 +39,12 @@ export default {
 
   methods: {
       ...mapActions(["playerNameUpdate"]),
+      
+      clickButton(){
+          this.playerNameUpdate(this.usernameInput);
 
+          this.$router.push({ name: 'home' });
+      }
   },
 
 

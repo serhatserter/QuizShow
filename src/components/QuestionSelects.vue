@@ -1,32 +1,28 @@
 <template>
   <div>
 
-    <div v-if="answer===null">
+    <div v-if="selectedanswer===null">
 
       <b-form-radio v-model="answer" type="radio" name="select" :value="answers[0]" @input="setAnswer">
         {{answers[0]}} </b-form-radio>
-
       <br />
-
       <b-form-radio v-model="answer" type="radio" name="select" :value="answers[1]" @input="setAnswer">
         {{answers[1]}} </b-form-radio>
-
       <br />
-
       <b-form-radio v-model="answer" type="radio" name="select" :value="answers[2]" @input="setAnswer">
         {{answers[2]}} </b-form-radio>
-
       <br />
-
       <b-form-radio v-model="answer" type="radio" name="select" :value="answers[3]" @input="setAnswer">
         {{answers[3]}} </b-form-radio>
 
       <br />
     </div>
     <div v-else>
-      {{ selectedanswer }}
-      <h4 v-if="selectedanswer" >CORRECT</h4>
-      <h4 v-else>WRONG</h4>
+      <h2 v-if="selectedanswer" >CORRECT</h2>
+      <div v-else>
+        <h4 >WRONG</h4>
+        <h4>Right Answer: {{this.questionList[this.questionIndex].correct_answer}}</h4>
+      </div>
     </div>
     <br>
 
