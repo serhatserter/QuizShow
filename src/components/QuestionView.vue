@@ -2,9 +2,12 @@
   <div>
 
     <h3>{{questionIndex+1}}: {{questionList[questionIndex].question}}</h3>
-    <question-selects></question-selects>
+    <br>
     <button v-if="questionIndex < questionList.length-1 " @click="(questionIndexUpdate(parseInt(questionIndex)+1))">Next Question</button>
     <button v-else>See Your Point!</button>
+    <br><br>
+    <question-selects></question-selects>
+
     
 
   </div>

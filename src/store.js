@@ -12,10 +12,14 @@ const state = {
   questionList: [],
   questionIndex: 0,
   correctcount: 0,
-  selectedanswer: null
+  selectedanswer: null,
+  playername: ""
 };
 
-const getters = {};
+const getters = {
+
+
+};
 
 const mutations = {
   SET_QUESTION_LIST(state, questionList) {
@@ -32,6 +36,9 @@ const mutations = {
 
   SET_SELECTED_ANSWER(state, selectedanswer) {
     state.selectedanswer = selectedanswer;
+  },
+  SET_PLAYER_NAME(state, playername) {
+    state.playername = playername;
   }
 };
 
@@ -55,6 +62,10 @@ const actions = {
 
   selectedAnswerUpdate({ commit }, selectedanswer) {
     commit("SET_SELECTED_ANSWER", selectedanswer);
+  },
+
+  playerNameUpdate({ commit }, playername) {
+    commit("SET_PLAYER_NAME", playername);
   },
 };
 

@@ -1,5 +1,6 @@
 <template>
-  <div id="app">      
+  <div id="app">  
+      <h1>Good Luck {{playername}} !</h1>    
       <question-view></question-view>
     <router-view />
   </div>
@@ -19,7 +20,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["questionList"]),
+    ...mapState(["questionList", "playername"]),
   },
 
   methods: {
