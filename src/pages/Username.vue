@@ -14,8 +14,6 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 import Home from "./Home.vue"
 
-import db from '@/firebase'
-
 export default {
   name: "Name",
   components: { Home },
@@ -57,23 +55,6 @@ export default {
           this.$router.push({ name: 'home' });
       }
   },
-
-  created(){
-    /*
-    const x = {
-      name: 'deneme',
-      score: '100'
-    }
-    db.collection('quizshow').add(x).then(() =>{
-      console.log('eklendi');
-    })
-    */
-    db.collection('quizshow').get().then((snapshot) =>{
-      snapshot.docs.forEach(doc =>{
-        console.log(doc.data());
-      })
-    })
-  }
 
 
 };

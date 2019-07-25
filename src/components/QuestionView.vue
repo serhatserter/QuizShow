@@ -21,7 +21,8 @@
 
     <!--LAST SCORE-->
     <h2 v-else-if="countdown === 0 || this.questionIndex+1 === questionList.length + 1 ">
-      Your Score: {{parseInt(countdown) + parseInt(correctcount) * 10}} 
+      <!--Your Score: {{parseInt(countdown) + parseInt(correctcount) * 10}} -->
+      Your Score: {{parseInt(correctcount) * 10}} 
       </h2>
     <br />
 

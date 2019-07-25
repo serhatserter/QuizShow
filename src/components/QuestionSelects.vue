@@ -28,7 +28,16 @@
 
     <!--RETRY-->
     <div v-if="countdown === 0 || questionIndex+1 === questionList.length + 1 ">
-      <button> RETRY </button>
+      <button @click="sendScore()"> Send Score </button>
+      <br>
+      <div v-if="showScore">
+        <br>
+      <label class="scoreRow" v-for="(scores, i) in scoreTable" :key="i">
+        <h4>{{scores.name}} : {{scores.score}}</h4>
+      </label>
+      <br>
+      </div>
+
       </div>
     <br>
    
@@ -37,18 +46,21 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import db from '@/firebase'
 
 export default {
   name: "QuestionSelects",
 
   data() {
     return {
-      answer: null
+      answer: null,
+      scoreTable: [],
+      showScore: false
     };
   },
 
   computed: {
-    ...mapState(["questionList", "questionIndex", "selectedanswer", "countdown"]),
+    ...mapState(["questionList", "questionIndex", "selectedanswer", "countdown", "playername", "correctcount"]),
 
     answers(){
 
@@ -82,7 +94,24 @@ export default {
 
     setAnswer(){
       this.selectedAnswerUpdate(this.answer);
+    },
+
+    async sendScore(){
+    var scorestring = (this.correctcount * 10) + "";
+    const datas = {
+      name: this.playername,
+      score: scorestring
     }
+      await db.collection('quizshow').add(datas);    
+   
+    db.collection("quizshow").orderBy("score", "desc").get().then((snapshot) =>{
+      snapshot.docs.forEach(doc =>{
+        this.scoreTable.push(doc.data());
+        
+      })
+      this.showScore = true;
+    })
+  }
 
   }
 };
@@ -94,5 +123,8 @@ b-form-radio{
   margin: 5px;
   background-color: gray;
 
+}
+.scoreRow{
+  display: block;
 }
 </style>
