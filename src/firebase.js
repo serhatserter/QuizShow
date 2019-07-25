@@ -1,5 +1,7 @@
-import Firebase from 'firebase'
-const firebaseApp = Firebase.initializeApp({
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+
+var config = {
     apiKey: "AIzaSyAKla1kgQBv-N2wXjtwHTV23Rsa0qDXS90",
     authDomain: "quizshow-1972d.firebaseapp.com",
     databaseURL: "https://quizshow-1972d.firebaseio.com",
@@ -7,5 +9,9 @@ const firebaseApp = Firebase.initializeApp({
     storageBucket: "",
     messagingSenderId: "376684932539",
     appId: "1:376684932539:web:3179e7f010eeae5e"
-})
-export const db = firebaseApp.database()
+};  
+
+firebase.initializeApp(config);
+const db = firebase.firestore();
+
+export default db;

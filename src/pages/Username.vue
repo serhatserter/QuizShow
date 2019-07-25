@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input name="inputname" v-model="usernameInput" v-validate="'min:5'" @keyup.enter="clickButton()"/>
+    <input name="inputname" v-model="usernameInput" v-validate="'required|min:5'" @keyup.enter="clickButton()"/>
     <span>{{ errors.first('inputname') }}</span>
     <h1>Name: {{playername}}</h1>
     <br>
@@ -13,6 +13,8 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 import Home from "./Home.vue"
+
+import db from '@/firebase'
 
 export default {
   name: "Name",
@@ -40,12 +42,38 @@ export default {
   methods: {
       ...mapActions(["playerNameUpdate"]),
       
-      clickButton(){
+      async clickButton(){
+
+          const validationResponse = await this.$validator.validateAll();
+
+          console.log(validationResponse);
+
+          if(!validationResponse){
+            return false;
+          }
+
           this.playerNameUpdate(this.usernameInput);
 
           this.$router.push({ name: 'home' });
       }
   },
+
+  created(){
+    /*
+    const x = {
+      name: 'deneme',
+      score: '100'
+    }
+    db.collection('quizshow').add(x).then(() =>{
+      console.log('eklendi');
+    })
+    */
+    db.collection('quizshow').get().then((snapshot) =>{
+      snapshot.docs.forEach(doc =>{
+        console.log(doc.data());
+      })
+    })
+  }
 
 
 };
