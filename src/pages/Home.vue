@@ -1,6 +1,7 @@
 <template>
-  <div v-if="pageLoadStatus">  
-      <h1>Good Luck {{playername}} !</h1>    
+  <div class="playElements" v-if="pageLoadStatus">  
+      <h2>Good Luck {{playername}} !</h2>
+      <br>    
       <question-view></question-view>
     <router-view />
   </div>
@@ -37,4 +38,13 @@ export default {
 </script>
 
 <style>
+
+  .playElements{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center
+  }
 </style>

@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <input name="inputname" v-model="usernameInput" v-validate="'required|min:5'" @keyup.enter="clickButton()"/>
+  <div class="nameElements">
+    <h2 style="padding-top: 100px">Enter Name:</h2><br>
     <span>{{ errors.first('inputname') }}</span>
-    <h1>Name: {{playername}}</h1>
+    <input name="inputname" class="nameInput" v-model="usernameInput" v-validate="'required|min:5'" @keyup.enter="clickButton()"/>
     <br>
-    <b-button @click="clickButton()">Play</b-button>
-    
-    
+    <b-button class="nameInput" @click="clickButton()">Play</b-button>  
+    <br>
+    <h1>Name: {{playername}}</h1>
   </div>
 </template>
 
@@ -61,4 +61,15 @@ export default {
 </script>
 
 <style>
+  .nameElements{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .nameInput{
+    width: 400px;
+    text-align: center
+  }
 </style>

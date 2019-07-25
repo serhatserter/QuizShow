@@ -1,19 +1,20 @@
 <template>
-  <div>
+  <div class="playElements">
     
     <!--RADIO BUTTONS-->
     <div v-if="selectedanswer===null && countdown !== 0 && questionIndex + 1 < questionList.length + 1">
-      <b-form-radio v-model="answer" type="radio" name="select" :value="answers[0]"  @input="setAnswer">
-        {{answers[0]}} </b-form-radio>
+      
+      <b-form-radio  v-model="answer" type="radio" name="select" :value="answers[0]"  @input="setAnswer" button>
+        <div class="selectRow">{{answers[0]}}</div></b-form-radio>
       <br />
-      <b-form-radio v-model="answer" type="radio" name="select" :value="answers[1]" @input="setAnswer">
-        {{answers[1]}} </b-form-radio>
+      <b-form-radio v-model="answer" type="radio" name="select" :value="answers[1]" @input="setAnswer" button>
+        <div class="selectRow">{{answers[1]}}</div></b-form-radio>
       <br />
-      <b-form-radio v-model="answer" type="radio" name="select" :value="answers[2]" @input="setAnswer">
-        {{answers[2]}} </b-form-radio>
+      <b-form-radio v-model="answer" type="radio" name="select" :value="answers[2]" @input="setAnswer" button>
+        <div class="selectRow">{{answers[2]}}</div></b-form-radio>
       <br />
-      <b-form-radio v-model="answer" type="radio" name="select" :value="answers[3]" @input="setAnswer">
-        {{answers[3]}} </b-form-radio>
+      <b-form-radio v-model="answer" type="radio" name="select" :value="answers[3]" @input="setAnswer" button>
+        <div class="selectRow">{{answers[3]}}</div></b-form-radio>
       <br />
     </div>
 
@@ -28,7 +29,8 @@
 
     <!--RETRY-->
     <div v-if="(countdown === 0 || questionIndex+1 === questionList.length + 1) && !showScore ">
-      <button @click="sendScore()"> Send Score </button>
+      <button @click="sendScore()"> Send Score </button><br><br>
+      <button onclick="window.location.href = './';">Retry</button>
       <br>
 
       </div>
@@ -39,7 +41,6 @@
         <h4>{{scores.name}} : {{scores.score}}</h4>
       </label>
       <br>
-      <button onclick="window.location.href = './';">Retry</button>
       </div>
    
   </div>
@@ -128,4 +129,8 @@ b-form-radio{
 .scoreRow{
   display: block;
 }
+.selectRow{
+  width:400px;
+}
+
 </style>

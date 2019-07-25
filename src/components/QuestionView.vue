@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="playElements">
     <div v-if="this.countdown > 0  && this.questionIndex+1 < questionList.length + 1">
       <!--TITLE-->
       <h3><div v-html="(questionIndex+1)+ ': ' + questionList[questionIndex].question"></div> </h3>
