@@ -3,7 +3,7 @@
 
 
 
-    <div v-if="selectedanswer===null && countdown !== 0">
+    <div v-if="selectedanswer===null && countdown !== 0 && questionIndex < 9">
 
       <b-form-radio v-model="answer" type="radio" name="select" :value="answers[0]"  @input="setAnswer">
         {{answers[0]}} </b-form-radio>
@@ -19,7 +19,7 @@
 
       <br />
     </div>
-    <div v-else-if="countdown > 0 ">
+    <div v-else-if="countdown < 0 || questionIndex > 9 ">
       <h2 v-if="selectedanswer"  >CORRECT</h2>
       <div v-else>
         <h4 >WRONG</h4>
