@@ -1,9 +1,11 @@
 <template>
   <div>
 
-    <div v-if="selectedanswer===null">
 
-      <b-form-radio v-model="answer" type="radio" name="select" :value="answers[0]" @input="setAnswer">
+
+    <div v-if="selectedanswer===null && countdown !== 0">
+
+      <b-form-radio v-model="answer" type="radio" name="select" :value="answers[0]"  @input="setAnswer">
         {{answers[0]}} </b-form-radio>
       <br />
       <b-form-radio v-model="answer" type="radio" name="select" :value="answers[1]" @input="setAnswer">
@@ -17,14 +19,16 @@
 
       <br />
     </div>
-    <div v-else>
-      <h2 v-if="selectedanswer" >CORRECT</h2>
+    <div v-else-if="countdown > 0 ">
+      <h2 v-if="selectedanswer"  >CORRECT</h2>
       <div v-else>
         <h4 >WRONG</h4>
         <h4>Right Answer: {{this.questionList[this.questionIndex].correct_answer}}</h4>
       </div>
     </div>
+    <div v-else>RETRY</div>
     <br>
+
 
     
   </div>
@@ -43,7 +47,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["questionList", "questionIndex", "selectedanswer"]),
+    ...mapState(["questionList", "questionIndex", "selectedanswer", "countdown"]),
 
     answers(){
 

@@ -13,14 +13,11 @@ const state = {
   questionIndex: 0,
   correctcount: 0,
   selectedanswer: null,
-  playername: ""
+  playername: "",
+  countdown: 100
 };
 
-const getters = {
-
-
-
-};
+const getters = {};
 
 const mutations = {
   SET_QUESTION_LIST(state, questionList) {
@@ -40,6 +37,9 @@ const mutations = {
   },
   SET_PLAYER_NAME(state, playername) {
     state.playername = playername;
+  },
+  SET_COUNTDOWN(state, countdown) {
+    state.countdown = countdown;
   }
 };
 
@@ -61,8 +61,17 @@ const actions = {
     commit("SET_CORRECT_COUNT", correctcount);
   },
 
+  countDownUpdate({ commit }, countdown) {
+    commit("SET_COUNTDOWN", countdown);
+  },
+
+
   selectedAnswerUpdate({ commit, state }, selectedanswer) {
     commit("SET_SELECTED_ANSWER", (state.questionList[state.questionIndex].correct_answer === selectedanswer));
+    
+    if((state.questionList[state.questionIndex].correct_answer === selectedanswer)){
+      commit("SET_CORRECT_COUNT", state.correctcount+1);
+    }
   },
 
   playerNameUpdate({ commit }, playername) {
