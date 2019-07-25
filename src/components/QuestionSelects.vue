@@ -27,19 +27,20 @@
     </div>
 
     <!--RETRY-->
-    <div v-if="countdown === 0 || questionIndex+1 === questionList.length + 1 ">
+    <div v-if="(countdown === 0 || questionIndex+1 === questionList.length + 1) && !showScore ">
       <button @click="sendScore()"> Send Score </button>
       <br>
+
+      </div>
+    <br>
       <div v-if="showScore">
         <br>
       <label class="scoreRow" v-for="(scores, i) in scoreTable" :key="i">
         <h4>{{scores.name}} : {{scores.score}}</h4>
       </label>
       <br>
+      <button onclick="window.location.href = './';">Retry</button>
       </div>
-
-      </div>
-    <br>
    
   </div>
 </template>
