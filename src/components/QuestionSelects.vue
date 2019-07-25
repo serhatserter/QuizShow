@@ -19,14 +19,16 @@
 
       <br />
     </div>
-    <div v-else-if="countdown < 0 || questionIndex > 9 ">
+    <div v-else-if="countdown > 0 && questionIndex < 9 ">
       <h2 v-if="selectedanswer"  >CORRECT</h2>
       <div v-else>
         <h4 >WRONG</h4>
         <h4>Right Answer: {{this.questionList[this.questionIndex].correct_answer}}</h4>
       </div>
     </div>
-    <div v-else>RETRY</div>
+    <div v-if="countdown <= 0 || questionIndex >= 9 ">
+      RETRY
+      </div>
     <br>
 
 
