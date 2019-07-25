@@ -1,25 +1,31 @@
 <template>
   <div>
-    <h3>
-      <div v-html="(questionIndex+1)+ ': ' + questionList[questionIndex].question"></div>
-    </h3>
-    <br />
-
-    <div>
-      <h2><countdown></countdown></h2>
+    <div v-if="this.countdown > 0  && this.questionIndex+1 < questionList.length + 1">
+      <!--TITLE-->
+      <h3><div v-html="(questionIndex+1)+ ': ' + questionList[questionIndex].question"></div> </h3>
+      <br />
+      <!--COUNTDOWN-->
+      <h2 ><countdown></countdown></h2>
       <br>
-      <h2 v-if="countdown > 0">Correct Point: {{correctcount * 10}}</h2>
+      <!--CORRECT POINT-->
+      <h2>Correct Point: {{correctcount * 10}}</h2>
+      <br>
+      <!--NEXT QUESTIONS BUTTON-->
+      <div v-if="this.questionIndex+1 !== questionList.length">
+        <button @click="(questionIndexUpdate(parseInt(questionIndex)+1))">Next Question</button>
+      </div>
+      <div v-else>
+        <button @click="(questionIndexUpdate(parseInt(questionIndex)+1))">Finish</button>
+      </div>
     </div>
+
+    <!--LAST SCORE-->
+    <h2 v-else-if="countdown === 0 || this.questionIndex+1 === questionList.length + 1 ">
+      Your Score: {{parseInt(countdown) + parseInt(correctcount) * 10}} 
+      </h2>
     <br />
 
-    <button
-      v-if="questionIndex < questionList.length-1 && countdown > 0 "
-      @click="(questionIndexUpdate(parseInt(questionIndex)+1))"
-    >Next Question</button>
-    <h2 v-else>Your Score: {{parseInt(countdown) + parseInt(correctcount) * 10}} </h2>
-    <br />
-    <br />
-
+    <!--SELECTS-->
     <question-selects></question-selects>
     <br>
   </div>

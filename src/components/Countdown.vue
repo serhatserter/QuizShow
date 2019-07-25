@@ -19,7 +19,7 @@ computed: {
     ...mapActions(["countDownUpdate"]),
 
     countDownTimer() {
-      if (this.countdown !== 0  && this.questionIndex < this.questionList.length-1) {
+      if (this.countdown !== 0  && this.questionIndex < this.questionList.length) {
         setTimeout(() => { this.countDownUpdate(parseInt(this.countdown-1)); this.countDownTimer(); }, 1000);
       }
     },

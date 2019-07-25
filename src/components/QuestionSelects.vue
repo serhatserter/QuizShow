@@ -1,10 +1,8 @@
 <template>
   <div>
-
-
-
-    <div v-if="selectedanswer===null && countdown !== 0 && questionIndex < 9">
-
+    
+    <!--RADIO BUTTONS-->
+    <div v-if="selectedanswer===null && countdown !== 0 && questionIndex + 1 < questionList.length + 1">
       <b-form-radio v-model="answer" type="radio" name="select" :value="answers[0]"  @input="setAnswer">
         {{answers[0]}} </b-form-radio>
       <br />
@@ -16,23 +14,24 @@
       <br />
       <b-form-radio v-model="answer" type="radio" name="select" :value="answers[3]" @input="setAnswer">
         {{answers[3]}} </b-form-radio>
-
       <br />
     </div>
-    <div v-else-if="countdown > 0 && questionIndex < 9 ">
-      <h2 v-if="selectedanswer"  >CORRECT</h2>
+
+    <!--SELECT RESULT-->
+    <div v-else-if="countdown > 0 && questionIndex+1 < questionList.length + 1 ">
+      <h2 v-if="selectedanswer">CORRECT</h2>
       <div v-else>
         <h4 >WRONG</h4>
         <h4>Right Answer: {{this.questionList[this.questionIndex].correct_answer}}</h4>
       </div>
     </div>
-    <div v-if="countdown <= 0 || questionIndex >= 9 ">
-      RETRY
+
+    <!--RETRY-->
+    <div v-if="countdown === 0 || questionIndex+1 === questionList.length + 1 ">
+      <button> RETRY </button>
       </div>
     <br>
-
-
-    
+   
   </div>
 </template>
 
@@ -68,14 +67,11 @@ export default {
     shuffle(array) {
       var currentIndex = array.length, temporaryValue, randomIndex;
 
-      // While there remain elements to shuffle...
       while (0 !== currentIndex) {
 
-        // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
 
-        // And swap it with the current element.
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
