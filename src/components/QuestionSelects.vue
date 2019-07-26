@@ -30,7 +30,7 @@
     <!--RETRY-->
     <div v-if="(countdown === 0 || questionIndex+1 === questionList.length + 1) && !showScore ">
       <button @click="sendScore()"> Send Score </button><br><br>
-      <button onclick="window.location.href = './';">Retry</button>
+      <b-button :to="`/`">RETRY</b-button>
       <br>
 
       </div>

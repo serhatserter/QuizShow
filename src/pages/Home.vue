@@ -1,50 +1,75 @@
 <template>
-  <div class="playElements" v-if="pageLoadStatus">  
-      <h2>Good Luck {{playername}} !</h2>
-      <br>    
-      <question-view></question-view>
-    <router-view />
+  <div class="nameElements">
+    <h2 style="padding-top: 100px">Enter Name:</h2><br>
+    <span>{{ errors.first('inputname') }}</span>
+    <input name="inputname" class="nameInput" v-model="usernameInput" v-validate="'required|min:5'" @keyup.enter="clickButton()"/>
+    <br>
+    <b-button class="nameInput" @click="clickButton()">Play</b-button>  
+    <br>
+    <h1>Name: {{playername}}</h1>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import QuestionView from "../components/QuestionView.vue"
+import { mapState, mapGetters, mapActions } from "vuex";
+import Play from "./Play.vue"
 
 export default {
   name: "Home",
-  components: { QuestionView },
+  components: { Play },
 
 
   data() {
-    return {
-      pageLoadStatus: false
-    };
+    return {};
   },
 
   computed: {
-    ...mapState(["questionList", "playername"]),
+      ...mapState(["playername"]),
+
+
+    usernameInput: {
+      get() {
+        return this.playername;
+      },
+      set(value) {
+        this.playerNameUpdate(value);
+      }
+    }
   },
 
   methods: {
-    ...mapActions(["fetchQuestionList"])
+      ...mapActions(["playerNameUpdate"]),
+      
+      async clickButton(){
+
+          const validationResponse = await this.$validator.validateAll();
+
+          console.log(validationResponse);
+
+          if(!validationResponse){
+            return false;
+          }
+
+          this.playerNameUpdate(this.usernameInput);
+
+          this.$router.push({ name: 'play' });
+      }
   },
 
-  async created() {
-    await this.fetchQuestionList();
-    this.pageLoadStatus = true;
-  }
+
 };
 </script>
 
 <style>
-
-  .playElements{
+  .nameElements{
     align-items: center;
     justify-content: center;
     display: flex;
     align-items: center;
     flex-direction: column;
+  }
+  .nameInput{
+    width: 400px;
     text-align: center
   }
 </style>

@@ -4,21 +4,21 @@ import Router from "vue-router";
 
 Vue.use(Router);
 
-import Username from "./pages/Username.vue";
 import Home from "./pages/Home.vue";
+import Play from "./pages/Play.vue";
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
       path: "/",
-      name: "name",
-      component: Username
+      name: "home",
+      component: Home
     },
     {
       path: "/Play",
-      name: "home",
-      component: Home
+      name: "play",
+      component: Play
     }
   ]
 });
