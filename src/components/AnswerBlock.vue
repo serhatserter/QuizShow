@@ -110,7 +110,8 @@ export default {
       "countdown",
       "playername",
       "correctcount",
-      "loadingStatus"
+      "loadingStatus",
+      "point"
     ]),
 
     answers() {
@@ -145,8 +146,7 @@ export default {
     },
 
     async sendScore() {
-      this.loadingUpdate(true);
-      var scorestring = this.correctcount * 10 + "";
+      var scorestring = this.point + "";
 
       const datas = {
         name: this.playername,
@@ -163,8 +163,6 @@ export default {
           });
           this.showScore = true;
         });
-
-      this.loadingUpdate(false);
     }
   }
 };
