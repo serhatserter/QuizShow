@@ -2,4 +2,4 @@
 
 ## Netlify Link:
 
-vuequizshow.netlify.com
+https://vuequizshow.netlify.com
