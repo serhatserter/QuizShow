@@ -1,7 +1,7 @@
 <template>
-  <div class="playElements" v-if="!loadingStatus">  
-      <h2 >Good Luck {{playername}} !</h2>  
-      <question-block></question-block>
+  <div class="playElements" v-if="!loadingStatus">
+    <h2>Good Luck {{ playername }} !</h2>
+    <question-block></question-block>
     <router-view />
   </div>
   <div class="playElements" v-else>
@@ -11,31 +11,35 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import QuestionBlock from "../components/QuestionBlock.vue"
-import Loading from "../components/Loading.vue"
+import QuestionBlock from "../components/QuestionBlock.vue";
+import Loading from "../components/Loading.vue";
 
 export default {
   name: "Play",
   components: { QuestionBlock, Loading },
 
-
   data() {
-    return {
-
-    };
+    return {};
   },
 
   computed: {
-    ...mapState(["questionList", "playername", "loadingStatus"]),
+    ...mapState(["questionList", "playername", "loadingStatus"])
   },
 
   methods: {
-    ...mapActions(["fetchQuestionList", "countDownUpdate", "questionIndexUpdate", "loadingUpdate", "correctCountUpdate", "pointUpdate"])
+    ...mapActions([
+      "fetchQuestionList",
+      "countDownUpdate",
+      "questionIndexUpdate",
+      "loadingUpdate",
+      "correctCountUpdate",
+      "pointUpdate"
+    ])
   },
 
   async created() {
     this.loadingUpdate(true);
-    
+
     await this.fetchQuestionList();
     this.countDownUpdate(parseInt(100));
     this.questionIndexUpdate(parseInt(0));
@@ -47,15 +51,13 @@ export default {
 </script>
 
 <style>
-
-  .playElements{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 30px;
-  }
-
+.playElements {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 30px;
+}
 </style>

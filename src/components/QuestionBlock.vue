@@ -1,33 +1,53 @@
 <template>
   <div class="questionElements">
-    <div v-if="this.countdown > 0  && this.questionIndex+1 < questionList.length + 1">
+    <div
+      v-if="
+        this.countdown > 0 && this.questionIndex + 1 < questionList.length + 1
+      "
+    >
       <!--COUNTDOWN-->
-      <h3 ><countdown></countdown></h3>
+      <h3><countdown></countdown></h3>
       <!--CORRECT POINT-->
-      <h4>Correct Count: {{correctcount }}</h4>
-      <h4>Your Score: {{point}} </h4>
-      <br>
+      <h4>Correct Count: {{ correctcount }}</h4>
+      <h4>Point: {{ point }}</h4>
+      <br />
       <!--TITLE-->
-      <h4 class="questions"><div v-html="(questionIndex+1)+ ': ' + questionList[questionIndex].question"></div> </h4>
+      <h4 class="questions">
+        <div
+          v-html="
+            questionIndex + 1 + ': ' + questionList[questionIndex].question
+          "
+        ></div>
+      </h4>
       <!--NEXT QUESTIONS BUTTON-->
-      <br>
-      <div v-if="this.questionIndex+1 !== questionList.length">
-        
-        <b-button variant="info" @click="(questionIndexUpdate(parseInt(questionIndex)+1))">Next Question</b-button>
+      <br />
+      <div v-if="this.questionIndex + 1 !== questionList.length">
+        <b-button
+          variant="info"
+          @click="questionIndexUpdate(parseInt(questionIndex) + 1)"
+          >Next Question</b-button
+        >
       </div>
       <div v-else>
-        <b-button variant="info" @click="(questionIndexUpdate(parseInt(questionIndex)+1))">Finish</b-button>
+        <b-button
+          variant="info"
+          @click="questionIndexUpdate(parseInt(questionIndex) + 1)"
+          >Finish</b-button
+        >
       </div>
     </div>
-    
+
     <!--LAST SCORE-->
-    <h2 v-else-if="countdown === 0 || this.questionIndex+1 === questionList.length + 1 ">
-      
-      Your Score: {{point}} 
-      </h2>
+    <h2
+      v-else-if="
+        countdown === 0 || this.questionIndex + 1 === questionList.length + 1
+      "
+    >
+      Your Score: {{ point + countdown }}
+    </h2>
     <!--ANSWERS-->
     <answer-block></answer-block>
-    <br>
+    <br />
   </div>
 </template>
 
@@ -45,26 +65,28 @@ export default {
   },
 
   computed: {
-    ...mapState(["questionList", "questionIndex", "correctcount", "countdown", "point"])
+    ...mapState([
+      "questionList",
+      "questionIndex",
+      "correctcount",
+      "countdown",
+      "point"
+    ])
   },
 
   methods: {
-    ...mapActions(["questionIndexUpdate", "correctCountUpdate"]),
-    
+    ...mapActions(["questionIndexUpdate", "correctCountUpdate"])
   }
 };
 </script>
 
 <style>
-  .questions{
-    border-radius: 10px;
-    background-color: whitesmoke;
-    border-color: lightgray;
-    color: black;
-    padding: 30px;
-  }
-
-  .questionElements{
-  }
+.questions {
+  border-radius: 10px;
+  background-color: whitesmoke;
+  border-color: lightgray;
+  color: black;
+  padding: 30px;
+}
 
 </style>

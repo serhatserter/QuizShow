@@ -6,8 +6,6 @@ import VueAxios from "vue-axios";
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 
-
-
 const state = {
   questionList: [],
   questionIndex: 0,
@@ -22,11 +20,11 @@ const state = {
 const getters = {};
 
 const mutations = {
-  SET_LOADING(state, loadingStatus){
+  SET_LOADING(state, loadingStatus) {
     state.loadingStatus = loadingStatus;
   },
 
-  SET_POINT(state, point){
+  SET_POINT(state, point) {
     state.point = point;
   },
 
@@ -56,7 +54,9 @@ const mutations = {
 const actions = {
   async fetchQuestionList({ commit }) {
     await Vue.axios
-      .get("https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple")
+      .get(
+        "https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple"
+      )
       .then(response => {
         commit("SET_QUESTION_LIST", response.data.results);
       });
@@ -83,20 +83,23 @@ const actions = {
     await commit("SET_LOADING", loadingStatus);
   },
 
-
   selectedAnswerUpdate({ commit, state }, selectedanswer) {
-    commit("SET_SELECTED_ANSWER", (state.questionList[state.questionIndex].correct_answer === selectedanswer));
-    
-    if((state.questionList[state.questionIndex].correct_answer === selectedanswer)){
-      commit("SET_CORRECT_COUNT", (state.correctcount+1));
-      commit("SET_POINT", state.point + (state.correctcount*10+state.countdown));
+    commit(
+      "SET_SELECTED_ANSWER",
+      state.questionList[state.questionIndex].correct_answer === selectedanswer
+    );
 
+    if (
+      state.questionList[state.questionIndex].correct_answer === selectedanswer
+    ) {
+      commit("SET_CORRECT_COUNT", state.correctcount + 1);
+      commit("SET_POINT", state.point + 100);
     }
   },
 
   playerNameUpdate({ commit }, playername) {
     commit("SET_PLAYER_NAME", playername);
-  },
+  }
 };
 
 const store = new Vuex.Store({

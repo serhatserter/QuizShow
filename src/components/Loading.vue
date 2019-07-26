@@ -1,27 +1,31 @@
 <template>
-    <div class="load">
-        <div class="lds-roller"
-            ><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-        </div>
+  <div class="load">
+    <div class="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+  </div>
 </template>
 
-<<script>
-
+<script>
 export default {
-  name: 'loading',
-}
+  name: "loading"
+};
 </script>
 
-
 <style>
-
-.load{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: darkslategrey;
-    top: 0;
+.load {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: darkslategrey;
+  top: 0;
 }
 
 .lds-roller {
@@ -109,5 +113,4 @@ export default {
     transform: rotate(360deg);
   }
 }
-
 </style>

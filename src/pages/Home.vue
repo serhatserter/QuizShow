@@ -1,6 +1,6 @@
 <template>
   <div class="nameElements">
-    <h1>Name: {{playername}}</h1>
+    <h1>Name: {{ playername }}</h1>
     <br />
 
     <input
@@ -13,20 +13,20 @@
     />
     <br />
 
-    <b-button variant="light" class="nameInput" @click="clickButton()">Play</b-button>
+    <b-button variant="light" class="nameInput" @click="clickButton()"
+      >Play</b-button
+    >
     <br />
 
-    <span>{{ errors.first('inputname') }}</span>
+    <span>{{ errors.first("inputname") }}</span>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
-import Play from "./Play.vue";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Home",
-  components: { Play },
 
   data() {
     return {};

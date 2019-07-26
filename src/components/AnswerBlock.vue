@@ -2,7 +2,11 @@
   <div class="playElements" v-if="!loadingStatus">
     <!--RADIO BUTTONS-->
     <div
-      v-if="selectedanswer===null && countdown !== 0 && questionIndex + 1 < questionList.length + 1"
+      v-if="
+        selectedanswer === null &&
+          countdown !== 0 &&
+          questionIndex + 1 < questionList.length + 1
+      "
     >
       <b-form-radio
         v-model="answer"
@@ -55,18 +59,30 @@
     </div>
 
     <!--SELECT RESULT-->
-    <div v-else-if="countdown > 0 && questionIndex+1 < questionList.length + 1 ">
+    <div
+      v-else-if="countdown > 0 && questionIndex + 1 < questionList.length + 1"
+    >
       <h2 v-if="selectedanswer">CORRECT</h2>
       <div v-else>
         <h4>WRONG</h4>
         <h4>
-          <div v-html="'Right Answer: ' + this.questionList[this.questionIndex].correct_answer"></div>
+          <div
+            v-html="
+              'Right Answer: ' +
+                this.questionList[this.questionIndex].correct_answer
+            "
+          ></div>
         </h4>
       </div>
     </div>
 
     <!--RETRY-->
-    <div v-if="(countdown === 0 || questionIndex+1 === questionList.length + 1) && !showScore ">
+    <div
+      v-if="
+        (countdown === 0 || questionIndex + 1 === questionList.length + 1) &&
+          !showScore
+      "
+    >
       <b-button variant="info" @click="sendScore()">Send Score</b-button>
       <br />
       <br />
@@ -77,8 +93,8 @@
       <b-button :to="`/`">RETRY</b-button>
       <br />
       <br />
-      <div class= "table">
-      <b-table striped hover :items="scoreTable"></b-table>
+      <div class="table">
+        <b-table striped hover :items="scoreTable"></b-table>
       </div>
       <br />
     </div>
@@ -88,11 +104,9 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import db from "@/firebase";
-import Loading from "../components/Loading.vue";
 
 export default {
   name: "AnswerBlock",
-  components: { Loading },
 
   data() {
     return {
@@ -146,7 +160,7 @@ export default {
     },
 
     async sendScore() {
-      var scorestring = this.point;
+      var scorestring = this.point + this.countdown-1;
 
       const datas = {
         name: this.playername,
@@ -169,7 +183,6 @@ export default {
 </script>
 
 <style>
-
 .scoreRow {
   display: block;
 }
@@ -179,9 +192,9 @@ export default {
   height: 15px;
   margin-bottom: 5px;
 }
-.table{
+.table {
   background-color: white;
-  padding:10px;
+  padding: 10px;
   border-radius: 10px;
 }
 </style>
