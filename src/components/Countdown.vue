@@ -1,5 +1,5 @@
 <template>
-  <div class="playElements" >
+  <div >
      
      <h2 class="countDown"> {{ this.countdown }}</h2>
     
@@ -37,15 +37,16 @@ created() {
 </script>
 <style>
     .countDown{
-        display: block;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 30px;
-        background-color: darkslategrey;
+        flex-direction: column;
+        padding: 20px;
+        background-color: darkred;
         color: whitesmoke;
         border-style: solid;
         border-radius: 50%;
-        width: 110px;
+        width: 90px;
         text-align: center;
     }
 </style>

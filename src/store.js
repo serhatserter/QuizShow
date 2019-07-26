@@ -14,12 +14,16 @@ const state = {
   correctcount: 0,
   selectedanswer: null,
   playername: "",
-  countdown: 100
+  countdown: 100,
+  loadingStatus: false
 };
 
 const getters = {};
 
 const mutations = {
+  SET_LOADING(state, loadingStatus){
+    state.loadingStatus = loadingStatus;
+  },
   SET_QUESTION_LIST(state, questionList) {
     state.questionList = questionList;
   },
@@ -63,6 +67,10 @@ const actions = {
 
   countDownUpdate({ commit }, countdown) {
     commit("SET_COUNTDOWN", countdown);
+  },
+
+  async loadingUpdate({ commit }, loadingStatus) {
+    await commit("SET_LOADING", loadingStatus);
   },
 
 

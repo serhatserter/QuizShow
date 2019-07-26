@@ -1,45 +1,43 @@
 <template>
-  <div class="playElements">
+  <div class="questionElements">
     <div v-if="this.countdown > 0  && this.questionIndex+1 < questionList.length + 1">
-      <!--TITLE-->
-      <h3><div v-html="(questionIndex+1)+ ': ' + questionList[questionIndex].question"></div> </h3>
-      <br />
       <!--COUNTDOWN-->
-      <h2 ><countdown></countdown></h2>
-      <br>
+      <h3 ><countdown></countdown></h3>
       <!--CORRECT POINT-->
-      <h2>Correct Point: {{correctcount * 10}}</h2>
+      <h4>Correct Point: {{correctcount * 10}}</h4>
       <br>
+      <!--TITLE-->
+      <h4 class="questions"><div v-html="(questionIndex+1)+ ': ' + questionList[questionIndex].question"></div> </h4>
       <!--NEXT QUESTIONS BUTTON-->
+      <br>
       <div v-if="this.questionIndex+1 !== questionList.length">
-        <button @click="(questionIndexUpdate(parseInt(questionIndex)+1))">Next Question</button>
+        
+        <b-button variant="info" @click="(questionIndexUpdate(parseInt(questionIndex)+1))">Next Question</b-button>
       </div>
       <div v-else>
-        <button @click="(questionIndexUpdate(parseInt(questionIndex)+1))">Finish</button>
+        <b-button variant="info" @click="(questionIndexUpdate(parseInt(questionIndex)+1))">Finish</b-button>
       </div>
     </div>
-
+    
     <!--LAST SCORE-->
     <h2 v-else-if="countdown === 0 || this.questionIndex+1 === questionList.length + 1 ">
-      <!--Your Score: {{parseInt(countdown) + parseInt(correctcount) * 10}} -->
+      
       Your Score: {{parseInt(correctcount) * 10}} 
       </h2>
-    <br />
-
-    <!--SELECTS-->
-    <question-selects></question-selects>
+    <!--ANSWERS-->
+    <answer-block></answer-block>
     <br>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
-import QuestionSelects from "../components/QuestionSelects.vue";
+import AnswerBlock from "../components/AnswerBlock.vue";
 import Countdown from "../components/Countdown.vue";
 
 export default {
-  name: "QuestionView",
-  components: { QuestionSelects, Countdown },
+  name: "QuestionBlock",
+  components: { AnswerBlock, Countdown },
 
   data() {
     return {};
@@ -57,4 +55,15 @@ export default {
 </script>
 
 <style>
+  .questions{
+    border-radius: 10px;
+    background-color: whitesmoke;
+    border-color: lightgray;
+    color: black;
+    padding: 30px;
+  }
+
+  .questionElements{
+  }
+
 </style>

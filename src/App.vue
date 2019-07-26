@@ -13,10 +13,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import VeeValidate from 'vee-validate';
-import underscore from 'vue-underscore';
+
 Vue.use(BootstrapVue);
-Vue.use(VeeValidate);
-Vue.use(underscore);
+Vue.use(VeeValidate, { fieldsBagName: 'veeFields',  inject: true });
 
 export default {
   name: 'app',
@@ -27,7 +26,9 @@ export default {
 </script>
 
 <style>
-body{
- margin: 10px;
-}
+  body{
+      font-family: 'Times New Roman', Times, serif;
+      background-color: rgb(37, 37, 37);
+      color: whitesmoke;
+  }
 </style>
