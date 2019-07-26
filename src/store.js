@@ -75,6 +75,10 @@ const actions = {
     commit("SET_COUNTDOWN", countdown);
   },
 
+  pointUpdate({ commit }, point) {
+    commit("SET_POINT", point);
+  },
+
   async loadingUpdate({ commit }, loadingStatus) {
     await commit("SET_LOADING", loadingStatus);
   },

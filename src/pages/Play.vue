@@ -30,7 +30,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchQuestionList", "countDownUpdate", "questionIndexUpdate", "loadingUpdate", "correctCountUpdate"])
+    ...mapActions(["fetchQuestionList", "countDownUpdate", "questionIndexUpdate", "loadingUpdate", "correctCountUpdate", "pointUpdate"])
   },
 
   async created() {
@@ -40,6 +40,7 @@ export default {
     this.countDownUpdate(parseInt(100));
     this.questionIndexUpdate(parseInt(0));
     this.correctCountUpdate(parseInt(0));
+    this.pointUpdate(parseInt(0));
     this.loadingUpdate(false);
   }
 };
