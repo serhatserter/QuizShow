@@ -160,7 +160,7 @@ export default {
     },
 
     async sendScore() {
-      var scorestring = this.point + this.countdown-1;
+      var scorestring = this.point;
 
       const datas = {
         name: this.playername,

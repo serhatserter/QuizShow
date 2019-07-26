@@ -93,7 +93,7 @@ const actions = {
       state.questionList[state.questionIndex].correct_answer === selectedanswer
     ) {
       commit("SET_CORRECT_COUNT", state.correctcount + 1);
-      commit("SET_POINT", state.point + 100);
+      commit("SET_POINT", state.point + (parseInt(state.countdown % 10) + 100));
     }
   },
 

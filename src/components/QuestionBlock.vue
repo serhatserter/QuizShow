@@ -43,7 +43,7 @@
         countdown === 0 || this.questionIndex + 1 === questionList.length + 1
       "
     >
-      Your Score: {{ point + countdown }}
+      Your Score: {{ point }}
     </h2>
     <!--ANSWERS-->
     <answer-block></answer-block>
