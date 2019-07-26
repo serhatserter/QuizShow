@@ -4,7 +4,8 @@
       <!--COUNTDOWN-->
       <h3 ><countdown></countdown></h3>
       <!--CORRECT POINT-->
-      <h4>Correct Point: {{correctcount * 10}}</h4>
+      <h4>Correct Count: {{correctcount }}</h4>
+      <h4>Your Score: {{point}} </h4>
       <br>
       <!--TITLE-->
       <h4 class="questions"><div v-html="(questionIndex+1)+ ': ' + questionList[questionIndex].question"></div> </h4>
@@ -22,7 +23,7 @@
     <!--LAST SCORE-->
     <h2 v-else-if="countdown === 0 || this.questionIndex+1 === questionList.length + 1 ">
       
-      Your Score: {{parseInt(correctcount) * 10}} 
+      Your Score: {{point}} 
       </h2>
     <!--ANSWERS-->
     <answer-block></answer-block>
@@ -44,7 +45,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["questionList", "questionIndex", "correctcount", "countdown"])
+    ...mapState(["questionList", "questionIndex", "correctcount", "countdown", "point"])
   },
 
   methods: {

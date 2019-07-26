@@ -15,7 +15,8 @@ const state = {
   selectedanswer: null,
   playername: "",
   countdown: 100,
-  loadingStatus: false
+  loadingStatus: false,
+  point: 0
 };
 
 const getters = {};
@@ -24,6 +25,11 @@ const mutations = {
   SET_LOADING(state, loadingStatus){
     state.loadingStatus = loadingStatus;
   },
+
+  SET_POINT(state, point){
+    state.point = point;
+  },
+
   SET_QUESTION_LIST(state, questionList) {
     state.questionList = questionList;
   },
@@ -78,7 +84,9 @@ const actions = {
     commit("SET_SELECTED_ANSWER", (state.questionList[state.questionIndex].correct_answer === selectedanswer));
     
     if((state.questionList[state.questionIndex].correct_answer === selectedanswer)){
-      commit("SET_CORRECT_COUNT", state.correctcount+1);
+      commit("SET_CORRECT_COUNT", (state.correctcount+1));
+      commit("SET_POINT", state.point + (state.correctcount*10+state.countdown));
+
     }
   },
 
