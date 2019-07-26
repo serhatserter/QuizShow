@@ -184,5 +184,6 @@ export default {
 .table{
   background-color: white;
   padding:10px;
+  border-radius: 10px;
 }
 </style>
