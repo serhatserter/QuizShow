@@ -7,7 +7,7 @@
       name="inputname"
       class="nameInput"
       v-model="usernameInput"
-      v-validate="'required|min:5'"
+      v-validate="'required|min:2'"
       @keyup.enter="clickButton()"
       autocomplete="off"
     />
